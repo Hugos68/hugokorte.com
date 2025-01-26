@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@layer base {
+    :root {
+        background: var(--color-neutral-50);
+        color: var(--color-neutral-950);
+
+    }
+    @media (prefers-color-scheme: dark) {
+        :root {
+            background: var(--color-neutral-950);
+            color: var(--color-neutral-50);
+        }
+    }
+}
