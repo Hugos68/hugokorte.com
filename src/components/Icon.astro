@@ -22,21 +22,25 @@ function getPathFromIconName(name: Name) {
 }
 
 function getPathFromGeneralIconName(icon: general.IconNode) {
-	const paths = icon.at(2);
-	if (!(paths && Array.isArray(paths))) {
+	const shape = icon[0];
+	const attributes = icon[1];
+	const nodes = icon[2];
+	if (!nodes) {
 		return "";
 	}
-
-	return paths.map(([shape, attributes]) => {
+	const inner = nodes.map(([shape, attributes]) => {
 			return `<${shape} ${Object.entries(attributes).map(([key, value]) => {
 				return `${key}="${value}"`;
 			}).join(' ')}></${shape}>`
 	}).join('');
+	return `<${shape} ${Object.entries(attributes).map(([key, value]) => {
+		return `${key}="${value}"`;
+	}).join(' ')}>${inner}</${shape}>`;
 }
 
 function getPathFromBrandIconName(icon: brand.SimpleIcon) {
-	return `<path d="${icon.path}"></path>`;
+	return `<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="${icon.path}"></path></svg>`;
 }
 ---
 
-<svg height="24" width="24" fill="currentColor"  set:html={getPathFromIconName(Astro.props.name)} />
+<Fragment set:html={getPathFromIconName(Astro.props.name)} />
