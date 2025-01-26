@@ -1,6 +1,14 @@
-import { children } from 'solid-js';
+import { children, createSignal, type ParentProps } from 'solid-js';
+import SearchDialog from './SearchDialog.tsx';
 
-export default function(props) {
+export default function(props: ParentProps) {
 	const c = children(() => props.children);
-	return <button onClick={() => console.log('Click')}>{c()}</button>
+	const [open, setOpen] = createSignal(false);
+
+	return (
+		<>
+			<button onClick={() => setOpen(true)}>{c()}</button>
+			<SearchDialog open={open} onOpenChange={setOpen}></SearchDialog>
+		</>
+	)
 }
