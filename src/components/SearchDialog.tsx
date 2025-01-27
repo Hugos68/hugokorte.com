@@ -5,7 +5,7 @@ import {
 	type Setter,
 	createResource,
 	Suspense,
-	For, createMemo
+	For
 } from 'solid-js';
 import type { Pagefind } from 'vite-plugin-pagefind/types';
 
@@ -50,14 +50,16 @@ export default function(props: Props) {
 				onInput={(e) => setQuery(e.currentTarget.value)}
 			/>
 			<ul>
-
-
-			<Suspense fallback={<p>Loading...</p>}>
-				<For each={searchResults()}>
-					{(item) => {
-						return <li>{item.content}</li>
-					}}
-				</For>
+				<Suspense fallback={<p>Loading...</p>}>
+					<For each={searchResults()}>
+						{(item) => {
+							return (
+								<li>
+									<a href={item.url}>{item.content}</a>
+								</li>
+							)
+						}}
+					</For>
 			</Suspense>
 			</ul>
 		</dialog>
