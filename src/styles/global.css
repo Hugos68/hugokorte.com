@@ -1,16 +1,19 @@
 @import "tailwindcss";
+@import '@fontsource/roboto-mono';
+
 @plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
 
 @layer base {
-    body {
+    html {
+        font-family: 'Roboto Mono', monospace;
         background: var(--color-neutral-50);
     }
     * {
-
         color: var(--color-neutral-950);
     }
     @media (prefers-color-scheme: dark) {
-        body {
+        html {
             background: var(--color-neutral-950);
         }
         * {
