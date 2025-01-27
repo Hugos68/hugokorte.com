@@ -5,7 +5,9 @@ import {
 	type Setter,
 	createResource,
 	Suspense,
-	For
+	For,
+	Show,
+	createMemo
 } from 'solid-js';
 import type { Pagefind } from 'vite-plugin-pagefind/types';
 
@@ -25,7 +27,7 @@ async function search(query: string) {
 		pagefind = await import('/pagefind/pagefind.js');
 		await pagefind.init();
 	}
-	const result = await pagefind.debouncedSearch(query, {}, 200);
+	const result = await pagefind.search(query);
 	if (!result) {
 		return [];
 	}
@@ -35,33 +37,50 @@ async function search(query: string) {
 export default function(props: Props) {
 	const [dialog, setDialog] = createSignal<HTMLDialogElement>();
 	const [query, setQuery] = createSignal("");
+	const searching = createMemo(() => query() !== "");
 	const [searchResults] = createResource(query, search);
 	createEffect(() => props.open() ? dialog()?.showModal() : dialog()?.close());
 	return (
 		<dialog
 			onClose={() => props.onOpenChange(false)}
-			class="fixed top-1/3 left-1/2 -translate-1/2 backdrop:bg-black/50"
+			class="fixed top-1/5 left-1/2 -translate-x-1/2 backdrop:bg-black/50 w-full max-w-4xl"
 			ref={setDialog}
 		>
-			<input
-				type="search"
-				placeholder="Search..."
-				value={query()}
-				onInput={(e) => setQuery(e.currentTarget.value)}
-			/>
-			<ul>
-				<Suspense fallback={<p>Loading...</p>}>
-					<For each={searchResults()}>
-						{(item) => {
-							return (
-								<li>
-									<a href={item.url}>{item.content}</a>
-								</li>
-							)
-						}}
-					</For>
-			</Suspense>
-			</ul>
+			<div class="bg-neutral-100 dark:bg-neutral-900 grid">
+				<input
+					class="bg-neutral-100 dark:bg-neutral-900 p-4"
+					type="search"
+					placeholder="Search..."
+					value={query()}
+					onInput={(e) => setQuery(e.currentTarget.value)}
+				/>
+				<div class="px-4 py-8">
+					<Show when={searching()}
+								fallback={<p class="text-center text-neutral-500 text-sm">Type anything to search...</p>}>
+						<ul class="grid gap-2">
+							<Suspense fallback={<p class="text-center text-neutral-500 text-sm">Searching...</p>}>
+
+								<Show when={(searchResults() ?? []).length > 0}
+											fallback={<p class="text-center text-neutral-500 text-sm">No results found for
+												query: {query()}</p>}>
+									<For each={searchResults()}>
+										{(item) => {
+											return (
+												<li>
+													<a class="p-4 bg-neutral-200 dark:bg-neutral-800 grid gap-1" href={item.url}>
+														<span class="text-lg font-semibold">{item.meta.title}</span>
+														<span class="[&>mark]:bg-neutral-500 [&>mark]:px-1" innerHTML={item.excerpt}></span>
+													</a>
+												</li>
+											)
+										}}
+									</For>
+								</Show>
+							</Suspense>
+						</ul>
+					</Show>
+				</div>
+			</div>
 		</dialog>
 	)
 }

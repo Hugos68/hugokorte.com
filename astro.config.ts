@@ -9,8 +9,7 @@ export default defineConfig({
       plugins: [
           tailwindcss(),
           pagefind({
-              outputDirectory: "dist",
-              developStrategy: "eager"
+              outputDirectory: "dist"
           }),
       ]
 	},
