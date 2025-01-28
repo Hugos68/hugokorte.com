@@ -8,7 +8,7 @@
 	{
 		"id": "floating-ui-svelte",
 		"title": "Floating UI Svelte",
-		"description": "A Svelte library for position floating elements and handling interaction. Inspired by Floating UI",
+		"description": "A Svelte library for positioning floating elements and handling interactions. Build on top of Floating UI",
 		"source": "https://github.com/skeletonlabs/floating-ui-svelte"
 	},
 	{
