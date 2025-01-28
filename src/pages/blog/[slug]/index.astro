@@ -1,0 +1,29 @@
+---
+import { getCollection, getEntry, render } from "astro:content";
+import Layout from "../../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+	const posts = await getCollection("posts");
+	return posts.map((post) => {
+		return {
+			params: {
+				slug: post.id,
+			},
+		};
+	});
+}
+
+const post = await getEntry("posts", Astro.params.slug);
+
+if (!post) {
+	throw new Error(`No post found: ${Astro.params.slug}`);
+}
+
+const { Content, headings } = await render(post);
+---
+
+<Layout>
+	<h1>{post.data.title}</h1>
+	<img src={post.data.image} alt={post.data.title} />
+	<Content></Content>
+</Layout>

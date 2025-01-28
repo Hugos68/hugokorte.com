@@ -1,0 +1,26 @@
+[
+	{
+		"id": "skeleton",
+		"title": "Skeleton",
+		"description": "An adaptive design system and component solution built around Tailwind",
+		"source": "https://github.com/skeletonlabs/skeleton"
+	},
+	{
+		"id": "floating-ui-svelte",
+		"title": "Floating UI Svelte",
+		"description": "A Svelte library for position floating elements and handling interaction. Inspired by Floating UI",
+		"source": "https://github.com/skeletonlabs/floating-ui-svelte"
+	},
+	{
+		"id": "twoslash-svelte",
+		"title": "Twoslash Svelte",
+		"description": "Twoslash support for the Svelte langauge",
+		"source": "https://github.com/Hugos68/vite-plugin-pagefind"
+	},
+	{
+		"id": "vite-plugin-pagefind",
+		"title": "Vite Plugin for Pagefind",
+		"description": "A Vite plugin for easily integrating pagefind into Vite based projects",
+		"source": "https://github.com/Hugos68/vite-plugin-pagefind"
+	}
+]

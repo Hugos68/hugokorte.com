@@ -1,23 +1,23 @@
 @import "tailwindcss";
-@import '@fontsource/roboto-mono';
+@import "@fontsource/roboto-mono";
 
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 
 @layer base {
-    html {
-        font-family: 'Roboto Mono', monospace;
-        background: var(--color-neutral-50);
-    }
-    * {
-        color: var(--color-neutral-950);
-    }
-    @media (prefers-color-scheme: dark) {
-        html {
-            background: var(--color-neutral-950);
-        }
-        * {
-            color: var(--color-neutral-50);
-        }
-    }
+	html {
+		font-family: "Roboto Mono", monospace;
+		background: var(--color-neutral-50);
+	}
+	* {
+		color: var(--color-neutral-950);
+	}
+	@media (prefers-color-scheme: dark) {
+		html {
+			background: var(--color-neutral-950);
+		}
+		* {
+			color: var(--color-neutral-50);
+		}
+	}
 }

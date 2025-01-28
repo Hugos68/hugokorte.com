@@ -1,15 +1,15 @@
 import {
-	createEffect,
-	createSignal,
 	type Accessor,
-	type Setter,
-	createResource,
-	Suspense,
 	For,
+	type Setter,
 	Show,
-	createMemo
-} from 'solid-js';
-import type { Pagefind } from 'vite-plugin-pagefind/types';
+	Suspense,
+	createEffect,
+	createMemo,
+	createResource,
+	createSignal,
+} from "solid-js";
+import type { Pagefind } from "vite-plugin-pagefind/types";
 
 interface Props {
 	open: Accessor<boolean>;
@@ -19,12 +19,12 @@ interface Props {
 let pagefind: Pagefind;
 
 async function search(query: string) {
-	if (query === '') {
+	if (query === "") {
 		return [];
 	}
 	if (!pagefind) {
 		// @ts-expect-error - Present at build time
-		pagefind = await import('/pagefind/pagefind.js');
+		pagefind = await import("/pagefind/pagefind.js");
 		await pagefind.init();
 	}
 	const result = await pagefind.search(query);
@@ -34,12 +34,14 @@ async function search(query: string) {
 	return await Promise.all(result.results.map((result) => result.data()));
 }
 
-export default function(props: Props) {
+export default function (props: Props) {
 	const [dialog, setDialog] = createSignal<HTMLDialogElement>();
 	const [query, setQuery] = createSignal("");
 	const searching = createMemo(() => query() !== "");
 	const [searchResults] = createResource(query, search);
-	createEffect(() => props.open() ? dialog()?.showModal() : dialog()?.close());
+	createEffect(() =>
+		props.open() ? dialog()?.showModal() : dialog()?.close(),
+	);
 	return (
 		<dialog
 			onClose={() => props.onOpenChange(false)}
@@ -55,24 +57,48 @@ export default function(props: Props) {
 					onInput={(e) => setQuery(e.currentTarget.value)}
 				/>
 				<div class="px-4 py-8">
-					<Show when={searching()}
-								fallback={<p class="text-center text-neutral-500 text-sm">Type anything to search...</p>}>
+					<Show
+						when={searching()}
+						fallback={
+							<p class="text-center text-neutral-500 text-sm">
+								Type anything to search...
+							</p>
+						}
+					>
 						<ul class="grid gap-2">
-							<Suspense fallback={<p class="text-center text-neutral-500 text-sm">Searching...</p>}>
-
-								<Show when={(searchResults() ?? []).length > 0}
-											fallback={<p class="text-center text-neutral-500 text-sm">No results found for
-												query: {query()}</p>}>
+							<Suspense
+								fallback={
+									<p class="text-center text-neutral-500 text-sm">
+										Searching...
+									</p>
+								}
+							>
+								<Show
+									when={(searchResults() ?? []).length > 0}
+									fallback={
+										<p class="text-center text-neutral-500 text-sm">
+											No results found for query: {query()}
+										</p>
+									}
+								>
 									<For each={searchResults()}>
 										{(item) => {
 											return (
 												<li>
-													<a class="p-4 bg-neutral-200 dark:bg-neutral-800 grid gap-1" href={item.url}>
-														<span class="text-lg font-semibold">{item.meta.title}</span>
-														<span class="[&>mark]:bg-neutral-500 [&>mark]:px-1" innerHTML={item.excerpt}></span>
+													<a
+														class="p-4 bg-neutral-200 dark:bg-neutral-800 grid gap-1"
+														href={item.url}
+													>
+														<span class="text-lg font-semibold">
+															{item.meta.title}
+														</span>
+														<span
+															class="[&>mark]:bg-neutral-500 [&>mark]:px-1"
+															innerHTML={item.excerpt}
+														/>
 													</a>
 												</li>
-											)
+											);
 										}}
 									</For>
 								</Show>
@@ -82,5 +108,5 @@ export default function(props: Props) {
 				</div>
 			</div>
 		</dialog>
-	)
+	);
 }

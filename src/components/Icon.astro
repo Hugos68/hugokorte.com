@@ -1,6 +1,6 @@
 ---
-import * as general from 'lucide';
-import * as brand from 'simple-icons';
+import * as general from "lucide";
+import * as brand from "simple-icons";
 
 type GeneralName = keyof typeof general;
 type BrandName = keyof typeof brand;
@@ -13,10 +13,14 @@ interface Props {
 
 function getPathFromIconName(name: Name) {
 	if (Object.hasOwn(general, name)) {
-		return getPathFromGeneralIconName(general[name as GeneralName] as general.IconNode);
+		return getPathFromGeneralIconName(
+			general[name as GeneralName] as general.IconNode,
+		);
 	}
 	if (Object.hasOwn(brand, name)) {
-		return getPathFromBrandIconName(brand[name as BrandName] as brand.SimpleIcon);
+		return getPathFromBrandIconName(
+			brand[name as BrandName] as brand.SimpleIcon,
+		);
 	}
 	throw new Error(`Unknown icon name: ${name}`);
 }
@@ -28,14 +32,20 @@ function getPathFromGeneralIconName(icon: general.IconNode) {
 	if (!nodes) {
 		return "";
 	}
-	const inner = nodes.map(([shape, attributes]) => {
-			return `<${shape} ${Object.entries(attributes).map(([key, value]) => {
-				return `${key}="${value}"`;
-			}).join(' ')}></${shape}>`
-	}).join('');
-	return `<${shape} ${Object.entries(attributes).map(([key, value]) => {
-		return `${key}="${value}"`;
-	}).join(' ')}>${inner}</${shape}>`;
+	const inner = nodes
+		.map(([shape, attributes]) => {
+			return `<${shape} ${Object.entries(attributes)
+				.map(([key, value]) => {
+					return `${key}="${value}"`;
+				})
+				.join(" ")}></${shape}>`;
+		})
+		.join("");
+	return `<${shape} ${Object.entries(attributes)
+		.map(([key, value]) => {
+			return `${key}="${value}"`;
+		})
+		.join(" ")}>${inner}</${shape}>`;
 }
 
 function getPathFromBrandIconName(icon: brand.SimpleIcon) {
