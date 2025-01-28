@@ -1,8 +1,8 @@
 import rss from "@astrojs/rss";
-import type { APIRoute } from "astro";
+import type { APIContext } from "astro";
 import { getCollection } from 'astro:content';
 
-export const GET: APIRoute = (context) => {
+export async function GET(context: APIContext) {
 	if (!context.site) {
 		throw new Error(
 			"Unable to generate RSS feed due to missing `context.site`",
