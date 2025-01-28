@@ -14,7 +14,7 @@
 	{
 		"id": "twoslash-svelte",
 		"title": "Twoslash Svelte",
-		"description": "Twoslash support for the Svelte langauge (Note: it's still merely a PR)",
+		"description": "Twoslash support for the Svelte language (Note: it's still merely a PR)",
 		"source": "https://github.com/twoslashes/twoslash/pull/57"
 	},
 	{
