@@ -6,7 +6,6 @@ const posts = defineCollection({
 		base: "./src/content/posts",
 		pattern: "*.md"
 	}),
-	type: 'content',
 	schema: z.object({
 		title: z.string(),
 		description: z.string(),
@@ -20,7 +19,6 @@ const projects = defineCollection({
 		base: "./src/content/projects",
 		pattern: "*.json"
 	}),
-	type: 'data',
 	schema: z.object({
 		title: z.string(),
 		description: z.string(),
