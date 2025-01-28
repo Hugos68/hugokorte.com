@@ -1,5 +1,6 @@
 import rss from "@astrojs/rss";
 import type { APIRoute } from "astro";
+import { getCollection } from 'astro:content';
 
 export const GET: APIRoute = (context) => {
 	if (!context.site) {
@@ -7,11 +8,16 @@ export const GET: APIRoute = (context) => {
 			"Unable to generate RSS feed due to missing `context.site`",
 		);
 	}
+	const posts = await getCollection('posts');
 	return rss({
 		title: "Hugo Korte's Blog",
-		description:
-			"A blog documenting various struggles in the Open Source Software world.",
+		description: "Hugo Korte's Blog",
 		site: context.site,
-		items: [],
+		items: posts.map((post) => ({
+			title: post.data.title,
+			pubDate: post.data.publishedAt,
+			description: post.data.description,
+			link: `/blog/${post.id}/`,
+		}))
 	});
 };
