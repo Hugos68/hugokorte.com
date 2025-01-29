@@ -8,6 +8,7 @@ import {
 	createMemo,
 	createResource,
 	createSignal,
+	onCleanup,
 } from "solid-js";
 import type { Pagefind } from "vite-plugin-pagefind/types";
 
@@ -42,10 +43,32 @@ export default function (props: Props) {
 	createEffect(() =>
 		props.open() ? dialog()?.showModal() : dialog()?.close(),
 	);
+	function onPointerDown(event: PointerEvent) {
+		if (
+			!(
+				event.target &&
+				event.target instanceof HTMLDialogElement &&
+				event.target.tagName === "DIALOG"
+			)
+		) {
+			return;
+		}
+		const rect = event.target.getBoundingClientRect();
+		const insideDialog =
+			rect.top <= event.clientY &&
+			event.clientY <= rect.top + rect.height &&
+			rect.left <= event.clientX &&
+			event.clientX <= rect.left + rect.width;
+		if (insideDialog) {
+			return;
+		}
+		event.target.close();
+	}
 	return (
 		<dialog
+			onPointerDown={onPointerDown}
 			onClose={() => props.onOpenChange(false)}
-			class="fixed top-1/5 left-1/2 -translate-x-1/2 backdrop:bg-black/50 w-full max-w-4xl"
+			class="fixed top-1/5 left-1/2 -translate-x-1/2 backdrop:bg-black/50 w-[90dvw] max-w-4xl max-h-[75dvh]"
 			ref={setDialog}
 		>
 			<div class="bg-neutral-100 dark:bg-neutral-900 grid">
@@ -56,7 +79,7 @@ export default function (props: Props) {
 					value={query()}
 					onInput={(e) => setQuery(e.currentTarget.value)}
 				/>
-				<div class="px-4 py-8">
+				<div class="px-4 py-8 overflow-auto">
 					<Show
 						when={searching()}
 						fallback={
