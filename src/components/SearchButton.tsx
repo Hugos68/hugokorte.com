@@ -21,7 +21,7 @@ export default function (props: ParentProps) {
 	});
 	return (
 		<>
-			<button type="button" onClick={() => setOpen(true)}>
+			<button type="button" aria-label="Search" onClick={() => setOpen(true)}>
 				{c()}
 			</button>
 			<SearchDialog open={open} onOpenChange={setOpen} />
