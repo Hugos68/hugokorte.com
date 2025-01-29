@@ -7,7 +7,10 @@ export default defineConfig({
 	site: "https://hugokorte.vercel.app/",
 	markdown: {
 		shikiConfig: {
-			theme: 'dracula',
+			themes: {
+				dark: "github-dark",
+				light: "github-light",
+			},
 		},
 	},
 	vite: {
