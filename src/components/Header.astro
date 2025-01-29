@@ -6,15 +6,15 @@ import SearchButton from "../components/SearchButton.tsx";
 ---
 
 <header class="grid grid-flow-col justify-between p-8 border-b text-sm sm:text-base">
-	<nav class="grid grid-flow-col items-center gap-4">
-		<a href="/">About</a>
-		<a href="/work">Work</a>
-		<a href="/blog">Blog</a>
-		<a href="/use">Use</a>
+	<nav class="grid grid-flow-col items-center">
+		<a class="p-2" href="/">About</a>
+		<a class="p-2" href="/work">Work</a>
+		<a class="p-2" href="/blog">Blog</a>
+		<a class="p-2" href="/use">Use</a>
 	</nav>
-	<nav class="grid grid-flow-col items-center  gap-4">
+	<nav class="grid grid-flow-col items-center">
 		<SearchButton client:load><Search></Search></SearchButton>
-		<a href="https://github.com/Hugos68" target="_blank" aria-label="Github"><Github></Github></a>
-		<a href="/rss.xml" target="_blank" aria-label="RSS (Really Simple Syndication)"><Rss></Rss></a>
+		<a class="p-2" href="https://github.com/Hugos68" target="_blank" aria-label="Github"><Github></Github></a>
+		<a class="p-2" href="/rss.xml" target="_blank" aria-label="RSS (Really Simple Syndication)"><Rss></Rss></a>
 	</nav>
 </header>
