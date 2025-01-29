@@ -5,14 +5,14 @@ import Search from "lucide-astro/Search";
 import SearchButton from "../components/SearchButton.tsx";
 ---
 
-<header class="grid grid-flow-col justify-between p-8 border-b">
-	<nav class="grid grid-flow-col gap-4">
+<header class="grid grid-flow-col justify-between p-8 border-b text-sm sm:text-base">
+	<nav class="grid grid-flow-col items-center gap-4">
 		<a href="/">About</a>
 		<a href="/work">Work</a>
 		<a href="/blog">Blog</a>
 		<a href="/use">Use</a>
 	</nav>
-	<nav class="grid grid-flow-col gap-4">
+	<nav class="grid grid-flow-col items-center  gap-4">
 		<SearchButton client:load><Search></Search></SearchButton>
 		<a href="https://github.com/Hugos68" target="_blank" aria-label="Github"><Github></Github></a>
 		<a href="/rss.xml" target="_blank" aria-label="RSS (Really Simple Syndication)"><Rss></Rss></a>
