@@ -3,7 +3,7 @@ title: Pagefind with Vite
 description: How to use Pagefind with Vite and overcoming the issues it creates.
 publishedAt: 2024-02-05
 updatedAt: 2024-04-16
-image: /pagefind-with-vite.webp
+image: ./pagefind-with-vite.svg
 ---
 
 ## Introduction

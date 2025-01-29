@@ -1,5 +1,6 @@
 ---
 import { getCollection, getEntry, render } from "astro:content";
+import { Image } from 'astro:assets';
 import Layout from "../../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
@@ -24,6 +25,6 @@ const { Content, headings } = await render(post);
 
 <Layout>
 	<h1>{post.data.title}</h1>
-	<img src={post.data.image} alt={post.data.title} />
+	<Image src={post.data.image} alt={post.data.title} />
 	<Content></Content>
 </Layout>
