@@ -43,7 +43,7 @@ export default function (props: Props) {
 	createEffect(() =>
 		props.open() ? dialog()?.showModal() : dialog()?.close(),
 	);
-	function onPointerDown(event: PointerEvent) {
+	function onClick(event: MouseEvent) {
 		if (
 			!(
 				event.target &&
@@ -65,8 +65,9 @@ export default function (props: Props) {
 		event.target.close();
 	}
 	return (
+		// biome-ignore lint/a11y/useKeyWithClickEvents: This isn't relevant for keyboard users
 		<dialog
-			onPointerDown={onPointerDown}
+			onClick={onClick}
 			onClose={() => props.onOpenChange(false)}
 			class="fixed top-1/5 left-1/2 -translate-x-1/2 backdrop:bg-black/50 w-[90dvw] max-w-4xl max-h-[75dvh]"
 			ref={setDialog}
