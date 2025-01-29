@@ -6,13 +6,14 @@ const posts = defineCollection({
 		base: "src/content/posts",
 		pattern: "*.md",
 	}),
-	schema: ({ image }) => z.object({
-		title: z.string(),
-		description: z.string(),
-		updatedAt: z.date(),
-		publishedAt: z.date(),
-		image: image(),
-	}),
+	schema: ({ image }) =>
+		z.object({
+			title: z.string(),
+			description: z.string(),
+			updatedAt: z.date(),
+			publishedAt: z.date(),
+			image: image(),
+		}),
 });
 
 const projects = defineCollection({

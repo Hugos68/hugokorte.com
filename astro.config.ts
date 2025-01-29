@@ -4,7 +4,12 @@ import { defineConfig } from "astro/config";
 import { pagefind } from "vite-plugin-pagefind";
 
 export default defineConfig({
-	site: "https://hugokorte.com/",
+	site: "https://hugokorte.vercel.app/",
+	markdown: {
+		shikiConfig: {
+			theme: 'dracula',
+		},
+	},
 	vite: {
 		plugins: [
 			tailwindcss(),
