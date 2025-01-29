@@ -21,7 +21,12 @@ export default function (props: ParentProps) {
 	});
 	return (
 		<>
-			<button class="p-2 cursor-pointer" type="button" aria-label="Search" onClick={() => setOpen(true)}>
+			<button
+				class="p-2 cursor-pointer"
+				type="button"
+				aria-label="Search"
+				onClick={() => setOpen(true)}
+			>
 				{c()}
 			</button>
 			<SearchDialog open={open} onOpenChange={setOpen} />
