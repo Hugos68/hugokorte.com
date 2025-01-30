@@ -65,7 +65,7 @@ export default function (props: Props) {
 		event.target.close();
 	}
 	return (
-		// biome-ignore lint/a11y/useKeyWithClickEvents: This isn't relevant for keyboard users
+		// biome-ignore lint/a11y/useKeyWithClickEvents: This action is not applicable to keyboard input
 		<dialog
 			onClick={onClick}
 			onClose={() => props.onOpenChange(false)}
