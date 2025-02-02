@@ -2,17 +2,24 @@
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 
-const posts = await getCollection("posts");
+const posts = await getCollection(
+	"posts",
+	(post) => post.data.visibility === "public",
+);
 ---
 
 <Layout>
-	<h1>Blog</h1>
-	<ul>
-		{posts.map(post => (
-			<li>
-				<a href={`/blog/${post.id}`}><strong>{post.data.title}</strong></a>: {post.data.description}
-			</li>
-		))}
-	</ul>
+  <h1>Blog</h1>
+  <ul>
+    {
+      posts.map((post) => (
+        <li>
+          <a href={`/blog/${post.id}`}>
+            <strong>{post.data.title}</strong>
+          </a>
+          : {post.data.description}
+        </li>
+      ))
+    }
+  </ul>
 </Layout>
-

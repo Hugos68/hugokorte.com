@@ -2,8 +2,9 @@
 title: Pagefind with Vite
 description: How to use Pagefind with Vite and overcoming the issues it creates.
 publishedAt: 2024-02-05
-updatedAt: 2024-04-16
+updatedAt: 2025-02-02
 image: ./pagefind-with-vite.svg
+visibility: public
 ---
 
 ## Introduction
@@ -25,8 +26,8 @@ Unlike [Algolia](https://www.algolia.com/), [Elastic](https://www.elastic.co/) o
 
 Here are some examples of large scale websites that have been indexed by Pagefind:
 
--   [MDN Web Docs](https://mdn.pagefind.app/)
--   [Godot Docs](https://godot.pagefind.app/)
+- [MDN Web Docs](https://mdn.pagefind.app/)
+- [Godot Docs](https://godot.pagefind.app/)
 
 ## So, what's the problem?
 
@@ -47,7 +48,7 @@ Dynamically importing pagefind looks like this:
 const pagefind = await import("/pagefind/pagefind.js");
 ```
 
-Vite, however, tries to scan for the `/pagefind/pagefind.js` file during build and cannot find it (because it doesn't exist yet), this produces the following error:
+Vite (or rather Rollup), however, tries to resolve the `/pagefind/pagefind.js` file during build and cannot resolve it (because it doesn't exist yet), this produces the following error:
 
 ```txt
 [vite]: Rollup failed to resolve import "/pagefind/pagefind.js"
@@ -63,12 +64,12 @@ This means we can solve the first problem by marking the module as "external" li
 import { defineConfig } from "vite";
 
 export default defineConfig({
-	// ...
-	build: {
-		rollupOptions: {
-			external: ["/pagefind/pagefind.js"],
-		},
-	},
+  // ...
+  build: {
+    rollupOptions: {
+      external: ["/pagefind/pagefind.js"],
+    },
+  },
 });
 ```
 
@@ -115,13 +116,13 @@ This means that we can actually tell Vite to allow importing pagefind from the s
 import { defineConfig } from "vite";
 
 export default defineConfig({
-	// ...
-	build: {
-		rollupOptions: {
-			external: ["/pagefind/pagefind.js"],
-		},
-	},
-	assetsInclude: "**/pagefind.js",
+  // ...
+  build: {
+    rollupOptions: {
+      external: ["/pagefind/pagefind.js"],
+    },
+  },
+  assetsInclude: "**/pagefind.js",
 });
 ```
 
