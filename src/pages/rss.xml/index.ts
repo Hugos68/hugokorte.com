@@ -8,8 +8,9 @@ export async function GET(context: APIContext) {
 			"Unable to generate RSS feed due to missing `context.site`",
 		);
 	}
-	const posts = await getCollection("posts", (post) =>
-		["public"].includes(post.data.visibility),
+	const posts = await getCollection(
+		"posts",
+		(post) => post.data.visibility === "hidden",
 	);
 	return rss({
 		title: "Hugo Korte's Blog",

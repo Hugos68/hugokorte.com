@@ -12,7 +12,7 @@ const posts = defineCollection({
 			description: z.string(),
 			updatedAt: z.date(),
 			publishedAt: z.date(),
-			image: image(),
+			image: z.optional(image()),
 			visibility: z.enum(["public", "hidden", "private"]),
 		}),
 });
