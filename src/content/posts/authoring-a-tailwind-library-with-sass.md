@@ -62,7 +62,7 @@ Now there is one more solution we never really discussed but looked interesting 
 
 Now because Stylus used a non standard CSS notation (pythonic identation) and Less, being not so familiar with, I decided to try my luck with Sass. Because Sass has two major ways to write CSS: Sass synax or SCSS syntax, I decided to go with SCSS because it aligns more with our goal, which is to stick to the native platform as much as we can. This way the barier for entry in terms of contributions is also much lower, because you're essentially writing CSS with extra syntactic sugar.
 
-Note: Just because I chose SCSS does _not_ make the other options any less valid, as long as these preprocessors compile to native CSS, you can use any option you would like.
+Note: Just because I chose SCSS does _not_ make the other options any less valid, as long as these preprocessors compile to native CSS, you can use any preprocessor you would like.
 
 So I created my first `.scss` file, and converted our color pairings code from JavaScript to SCSS, and the results were pretty awesome:
 
