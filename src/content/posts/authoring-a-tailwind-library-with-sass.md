@@ -89,7 +89,7 @@ This is now _all_ that's needed to generate all 63 classes.
 
 One additionl benefit to this approach is Vite, which is our build tool. Vite by default supports major preprocesors like Sass. This means that all we had to do is change the `.css` extension to `.scss` to get our library to build. On top of that, Vite has a build in `--watch` flag to allow us to have Hot Reload which is a signficant improvement in our Developer Experience.
 
-## Conclusioun
+## Conclusion
 
 Although funny in a certain way, I and the Skeleton team feel that using Sass for our Tailwind plugin is the best way to move forward, it just works extremely well for this specific use case.
 The reason I wanted to write this blogpost is to share the possibilities of Sass for other people that are in the same boat as us and need to convert their V3 Tailwind plugin to the new CSS only format.
