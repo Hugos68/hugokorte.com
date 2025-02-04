@@ -1,8 +1,8 @@
 ---
 title: Authoring a Tailwind library with Sass
 description: The pain of authoring tailwind libraries and the surprising solution.
-publishedAt: 2025-02-02
-updatedAt: 2024-02-02
+publishedAt: 2025-02-04
+updatedAt: 2024-02-04
 visibility: public
 ---
 
