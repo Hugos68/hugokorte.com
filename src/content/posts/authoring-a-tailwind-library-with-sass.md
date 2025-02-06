@@ -41,10 +41,10 @@ The project I spend my most time on: [Skeleton](https://github.com/skeletonlabs/
 
 ## The Problem
 
-So what's the problem? Well, like I previously said, Tailwind V4 moves to a CSS based configuration, this means that the `plugin` module from Tailwind (as demonstrated in the previous chapter) is completely removed and can't be used to generate plugins anymore. This poses a serious problem for Skeleton, and likely many other projects. CSS unlike JavaScript, doesn't have any control flow logic like loops or if statements, which makes for a signifcant challenge in authoring maintainable plugins. We were left with two choices:
+So what's the problem? Well, like I previously said, Tailwind V4 moves to a CSS based configuration, and while the JavaScript based configuration is still supported using the `@config` rule, Tailwind is clearly moving in a direction where these are considered legacy and likely won't be supported forever. My guess is they will be completely removed in the next major version (Tailwind V5). This poses a serious problem for Skeleton, and likely many other projects. CSS unlike JavaScript, doesn't have any control flow logic like loops or if statements, which makes for a signifcant challenge in authoring maintainable plugins. We were left with two choices:
 
 - **A**: Create our own `plugin` function and compile step that compiles JavaScript to a CSS stylesheet.
-- **B**: Manually write out all our utility classes and maintain them by hand.
+- **B**: Manually write out all our CSS variables and maintain them by hand.
 
 After trying out both solutions, we discovered that they both have significant downsides, let's discuss these solutions:
 
@@ -60,7 +60,9 @@ Solution B wasn't great either, although we didn't need an additional build step
 
 Now there is one more solution we never really discussed but looked interesting to me personally: using a CSS preprocessor. CSS preprocessors are usually a way for CSS authors to write a different, usually more concise, form of CSS and compile it to valid CSS in some sort of build/compile step. Popular preprocessors you might of heard of are: [Sass](https://sass-lang.com/), [Less](http://lesscss.org/) and [Stylus](https://stylus-lang.com/).
 
-Now because Styles used a non standard CSS notation (using identation) and Less, being overal lesser known, I decided to try my luck with Sass. Because Sass has two major ways to write CSS: Sass synax or SCSS syntax, I decided to go with SCSS because it aligns more with our goal, which is to stick to the native platform as much as we can. This way the barier for entry in terms of contributions is also much lower, because you're essentially writing CSS with extra syntactic sugar.
+Now because Stylus used a non standard CSS notation (pythonic identation) and Less, being not so familiar with, I decided to try my luck with Sass. Because Sass has two major ways to write CSS: Sass synax or SCSS syntax, I decided to go with SCSS because it aligns more with our goal, which is to stick to the native platform as much as we can. This way the barier for entry in terms of contributions is also much lower, because you're essentially writing CSS with extra syntactic sugar.
+
+Note: Just because I chose SCSS does _not_ make the other options any less valid, as long as these preprocessors compile to native CSS, you can use any preprocessor you would like.
 
 So I created my first `.scss` file, and converted our color pairings code from JavaScript to SCSS, and the results were pretty awesome:
 
@@ -85,13 +87,13 @@ $shades: (50, 100, 200, 300, 400);
 }
 ```
 
-This is now _all_ that's needed to generate all 63 classes.
+This is now _all_ that's needed to generate all 63 CSS custom properties.
 
 One additionl benefit to this approach is Vite, which is our build tool. Vite by default supports major preprocesors like Sass. This means that all we had to do is change the `.css` extension to `.scss` to get our library to build. On top of that, Vite has a build in `--watch` flag to allow us to have Hot Reload which is a signficant improvement in our Developer Experience.
 
 ## Conclusion
 
-Although funny in a certain way, I and the Skeleton team feel that using Sass for our Tailwind plugin is the best way to move forward, it just works extremely well for this specific use case.
+Although funny in a certain way, the Skeleton team and I feel that using Sass for our Tailwind plugin is the best way to move forward, it just works extremely well for this specific use case.
 The reason I wanted to write this blogpost is to share the possibilities of Sass for other people that are in the same boat as us and need to convert their V3 Tailwind plugin to the new CSS only format.
 
 I really hope you enjoyed this read and most importantly, learned something from it.
