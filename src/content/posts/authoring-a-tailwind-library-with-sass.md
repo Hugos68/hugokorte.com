@@ -8,7 +8,7 @@ visibility: public
 
 ## Introduction
 
-Yes, you've read the title correctly, but before we dive into the _what_, let's take discuss the _why_.
+Yes, you read the title correctly, but before we dive into the _what_, let's take discuss the _why_.
 It all started on the 22nd of January 2025: Tailwinds first major release in over 4 years: [Tailwind V4](https://tailwindcss.com/blog/tailwindcss-v4).
 
 Before you continue reading this blog, I highly recommend reading the Tailwind V4 blog linked above, it provides critical context about the changes that inspired me to write this blogpost. But for those who dislike reading or merely need a refresher, the TL;DR is: Tailwind V4 moves from a JavaScript based config to a CSS based config. And although many agree that this is a much "cleaner" solution to configure Tailwind, it does introduce a pretty major problem: _Authoring Tailwind plugins_.
