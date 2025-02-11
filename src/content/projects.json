@@ -1,26 +1,26 @@
 [
-	{
-		"id": "skeleton",
-		"title": "Skeleton",
-		"description": "An adaptive design system and component solution built around Tailwind",
-		"source": "https://github.com/skeletonlabs/skeleton"
-	},
-	{
-		"id": "floating-ui-svelte",
-		"title": "Floating UI Svelte",
-		"description": "A Svelte library for positioning floating elements and handling interactions. Build on top of Floating UI",
-		"source": "https://github.com/skeletonlabs/floating-ui-svelte"
-	},
-	{
-		"id": "twoslash-svelte",
-		"title": "Twoslash Svelte",
-		"description": "Twoslash support for the Svelte language (Note: it's still merely a PR)",
-		"source": "https://github.com/twoslashes/twoslash/pull/57"
-	},
-	{
-		"id": "vite-plugin-pagefind",
-		"title": "Vite Plugin for Pagefind",
-		"description": "A Vite plugin for easily integrating pagefind into Vite based projects",
-		"source": "https://github.com/Hugos68/vite-plugin-pagefind"
-	}
+  {
+    "id": "skeleton",
+    "title": "Skeleton",
+    "description": "An adaptive design system and component solution built around Tailwind",
+    "source": "https://github.com/skeletonlabs/skeleton"
+  },
+  {
+    "id": "floating-ui-svelte",
+    "title": "Floating UI Svelte",
+    "description": "A Svelte library for positioning floating elements and handling interactions. Build on top of Floating UI",
+    "source": "https://github.com/skeletonlabs/floating-ui-svelte"
+  },
+  {
+    "id": "twoslash-svelte",
+    "title": "Twoslash Svelte",
+    "description": "Twoslash support for the Svelte language, fun fact: this project got second place in the 2024 Svelte Hack!",
+    "source": "https://github.com/twoslashes/twoslash/pull/57"
+  },
+  {
+    "id": "vite-plugin-pagefind",
+    "title": "Vite Plugin for Pagefind",
+    "description": "A Vite plugin for easily integrating pagefind into Vite based projects",
+    "source": "https://github.com/Hugos68/vite-plugin-pagefind"
+  }
 ]
