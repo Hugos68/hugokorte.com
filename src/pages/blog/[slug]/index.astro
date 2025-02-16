@@ -31,8 +31,10 @@ const { Content, headings } = await render(post);
 	{post.data.image && <Image src={post.data.image} alt={post.data.title} />}
 	<h2>On this page</h2>
 	<TableOfContents headings={headings} />
-	<Content />
-	<div class="flex justify-between italic">
+	<article>
+		<Content />
+	</article>
+	<div class="flex justify-between italic text-sm">
 		<p>Published on: {post.data.publishedAt.toLocaleDateString()}</p>
 		<p>Updated on: {post.data.updatedAt.toLocaleDateString()}</p>
 	</div>
