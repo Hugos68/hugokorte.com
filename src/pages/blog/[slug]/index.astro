@@ -31,7 +31,7 @@ const { Content, headings } = await render(post);
 	{post.data.image && <Image src={post.data.image} alt={post.data.title} />}
 	<h2>On this page</h2>
 	<TableOfContents headings={headings} />
-	<article>
+	<article class="contents">
 		<Content />
 	</article>
 	<div class="flex justify-between italic text-sm">
