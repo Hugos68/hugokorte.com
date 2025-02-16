@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import { ClientRouter } from "astro:transitions";
+import Analytics from "@vercel/analytics/astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import Main from "../components/Main.astro";
@@ -38,9 +39,10 @@ interface Props {
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 		<link rel="apple-touch-icon" type="image/svg+xml" href="/favicon.svg">
 		<link rel="sitemap" type="application/xml" href="/sitemap-index.xml">
-
 		<!-- Router -->
 		<ClientRouter></ClientRouter>
+		<!-- Analyitics -->
+		 <Analytics></Analytics>
 	</head>
 	<body class="container mx-auto grid gap-4">
 		<a class="absolute left-0 top-0 not-focus:sr-only bg-blue-500 text-white px-4 py-2 z-50" href="#main">Skip to content</a>
