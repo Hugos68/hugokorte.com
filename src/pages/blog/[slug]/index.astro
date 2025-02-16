@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection, getEntry, render } from "astro:content";
+import TableOfContents from "../../../components/TableOfContents";
 import Layout from "../../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
@@ -22,11 +23,17 @@ if (!post) {
 	throw new Error(`No post found: ${Astro.params.slug}`);
 }
 
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
 ---
 
-<Layout>
-  <h1>{post.data.title}</h1>
-  {post.data.image && <Image src={post.data.image} alt={post.data.title} />}
-  <Content />
+<Layout title={post.data.title} description={post.data.description} image={post.data.image?.src}>
+	<h1>{post.data.title}</h1>
+	{post.data.image && <Image src={post.data.image} alt={post.data.title} />}
+	<h2>On this page</h2>
+	<TableOfContents headings={headings} />
+	<Content />
+	<div class="flex justify-between italic">
+		<p>Published on: {post.data.publishedAt.toLocaleDateString()}</p>
+		<p>Updated on: {post.data.updatedAt.toLocaleDateString()}</p>
+	</div>
 </Layout>

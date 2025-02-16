@@ -3,6 +3,8 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import { pagefind } from "vite-plugin-pagefind";
 
+import sitemap from "@astrojs/sitemap";
+
 export default defineConfig({
 	site: "https://hugokorte.vercel.app/",
 	markdown: {
@@ -21,5 +23,5 @@ export default defineConfig({
 			}),
 		],
 	},
-	integrations: [solidJs()],
+	integrations: [solidJs(), sitemap()],
 });
