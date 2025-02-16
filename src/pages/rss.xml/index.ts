@@ -10,7 +10,7 @@ export async function GET(context: APIContext) {
 	}
 	const posts = await getCollection(
 		"posts",
-		(post) => post.data.visibility === "hidden",
+		(post) => post.data.visibility === "public",
 	);
 	return rss({
 		title: "Hugo Korte's Blog",
