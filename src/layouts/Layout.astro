@@ -62,7 +62,9 @@ const image = Astro.props.image || "/favicon.svg";
 	<body class="container mx-auto grid gap-4">
 		<a class="absolute left-0 top-0 not-focus:sr-only bg-blue-500 text-white px-4 py-2 z-50" href="#main">SKIP TO MAIN CONTENT</a>
 		<Header></Header>
-		<Main><slot></slot></Main>
+		<Main>
+			<slot></slot>
+		</Main>
 		<Footer></Footer>
 	</body>
 </html>
