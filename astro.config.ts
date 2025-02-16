@@ -23,5 +23,7 @@ export default defineConfig({
 			}),
 		],
 	},
-	integrations: [solidJs(), sitemap()],
+	integrations: [solidJs(), sitemap({
+		
+	})],
 });

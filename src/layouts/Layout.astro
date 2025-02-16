@@ -1,66 +1,49 @@
 ---
 import "../styles/global.css";
 import { ClientRouter } from "astro:transitions";
-import { SEO } from "astro-seo";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import Main from "../components/Main.astro";
 
 interface Props {
-	title?: string;
-	type?: string;
-	description?: string;
+	title: string;
+	type: string;
+	description: string;
 	image?: string;
 }
-
-const title = Astro.props.title || "Hugo Korte";
-const type = Astro.props.type || "website";
-const description = Astro.props.description || "Hugo Korte's personal website";
-const image = Astro.props.image || "/favicon.svg";
 ---
  	
 <!doctype html>
 <html lang="en" transition:animate="none">
 	<head>
-		<SEO
-			title={Astro.props.title}
-			description={description}
-			openGraph={{
-				basic: {
-					title: title,
-					type: type,
-					image: image
-				}
-			}}
-			twitter={{
-				card: "summary_large_image",
-				site: "@HugosOffEarth",
-				creator: "@HugosOffEarth"
-			}}
-			extend={{
-				link: [
-					{
-						rel: "icon",
-						type: "image/svg+xml",
-						href: "/favicon.svg",
-					},
-					{
-						rel: "sitemap",
-						href: "/sitemap-index.xml",
-					}
-				],
-				meta: [
-					{
-						name: "viewport",
-						content: "width=device-width, initial-scale=1",
-					},
-				]
-			}}
-		></SEO>
+		<!-- Default -->
+		<title>{Astro.props.title} - Hugo Korte</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content={Astro.props.description}>
+		<meta name="author" content="Hugo Korte">
+		<!-- Open Graph -->
+		<meta property="og:title" content={Astro.props.title}>
+		<meta property="og:type" content={Astro.props.type}>
+		<meta property="og:description" content={Astro.props.description}>
+		<meta property="og:url" content={Astro.url}>
+		{Astro.props.image && <meta property="og:image" content={Astro.props.image} /> }
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content={Astro.props.title}>
+		<meta name="twitter:description" content={Astro.props.description}>
+		{Astro.props.image && <meta name="twitter:image" content={Astro.props.image} /> }
+		<!-- Misc -->
+		<link rel="canonical" href={Astro.url}>
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+		<link rel="apple-touch-icon" type="image/svg+xml" href="/favicon.svg">
+		<link rel="sitemap" type="application/xml" href="/sitemap-index.xml">
+
+		<!-- Router -->
 		<ClientRouter></ClientRouter>
 	</head>
 	<body class="container mx-auto grid gap-4">
-		<a class="absolute left-0 top-0 not-focus:sr-only bg-blue-500 text-white px-4 py-2 z-50" href="#main">SKIP TO MAIN CONTENT</a>
+		<a class="absolute left-0 top-0 not-focus:sr-only bg-blue-500 text-white px-4 py-2 z-50" href="#main">Skip to content</a>
 		<Header></Header>
 		<Main>
 			<slot></slot>

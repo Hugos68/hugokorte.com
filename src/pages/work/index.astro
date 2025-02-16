@@ -5,7 +5,7 @@ import Layout from "../../layouts/Layout.astro";
 const projects = await getCollection("projects");
 ---
 
-<Layout>
+<Layout title="Work" description="An overview of Hugo Korte's work" type="website">
 	<h1>Work</h1>
 	<ul>
 		{projects.map(project => (

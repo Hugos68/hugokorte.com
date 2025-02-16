@@ -26,7 +26,7 @@ if (!post) {
 const { Content, headings } = await render(post);
 ---
 
-<Layout title={post.data.title} description={post.data.description} image={post.data.image?.src}>
+<Layout title={post.data.title} description={post.data.description} type="article" image={post.data.image?.src}>
 	<h1>{post.data.title}</h1>
 	{post.data.image && <Image src={post.data.image} alt={post.data.title} />}
 	<h2>On this page</h2>
