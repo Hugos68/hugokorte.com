@@ -44,12 +44,14 @@ interface Props {
 		<!-- Analyitics -->
 		<Analytics></Analytics>
 	</head>
-	<body class="container mx-auto grid gap-4">
+	<body >
 		<a class="absolute left-0 top-0 not-focus:sr-only bg-blue-500 text-white px-4 py-2 z-50" href="#main">Skip to content</a>
-		<Header></Header>
-		<Main>
-			<slot></slot>
-		</Main>
-		<Footer></Footer>
+		<div class="container mx-auto grid gap-4">
+			<Header></Header>
+			<Main>
+				<slot></slot>
+			</Main>
+			<Footer></Footer>
+		</div>
 	</body>
 </html>
